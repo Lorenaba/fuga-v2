@@ -44,7 +44,16 @@ Escenario: Clasificación con baja confianza
   Cuando el sistema no logra identificar un valor claro
   Entonces el gasto se guarda como "sin clasificar"
   Y el usuario puede completar la categoría manualmente
+
+Escenario: Revisión en lote al final del día
+  Dado que el usuario registró varios gastos a lo largo del día
+  Cuando abre la vista de "revisión del día"
+  Entonces ve todos los gastos del día con su categoría asignada
+  Y puede corregir solo los que estén mal antes de confirmarlos todos juntos
 ```
+*Ajuste tras entrevista real (ver `docs/ia/entrevista-real.md`): el usuario
+prefiere revisar varios gastos juntos al final del día en vez de confirmar
+categoría por categoría en el momento de cada registro.*
 
 ### HU-03 — Must
 **Como** usuario **quiero** consultar el historial de mis gastos registrados **para**
@@ -125,6 +134,7 @@ y del riesgo que un solo desarrollador puede asumir.
 | El requisito de "Dashboard" (RF-05) no tenía ningún estado observable ni forma de fallar; solo decía "mostrar dashboard". | Se agregó un criterio con estado verificable: totales agrupados por categoría, con un caso donde no hay datos. | **Testable** — antes no se podía imaginar cómo fallaría el escenario; ahora sí. |
 | El requisito de "fugas de dinero" (RF-06) corría el riesgo de sonar como si la IA juzgara qué gasto es "malo", lo cual está fuera de las restricciones del negocio. | Se reescribió el criterio usando una regla explícita y objetiva (3+ gastos similares en un periodo) y el término "posible fuga", nunca "gasto innecesario". | **Valuable / Negotiable** — entrega valor real (detectar patrones) sin prometer un juicio que el sistema no puede sostener, y deja abierto el CÓMO se define el umbral. |
 | La historia de registro por voz (Could) era muy amplia ("usar mi voz") sin límite claro de tamaño. | Se acotó a: transcribir y reutilizar el mismo pipeline de clasificación de texto ya construido en HU-02, en lugar de crear lógica nueva. | **Small** — cabe en pocos días porque no duplica trabajo ya hecho. |
+| HU-02 asumía que el sistema pediría confirmación de categoría gasto por gasto antes de guardar. La entrevista real mostró que el usuario prefiere registrar varios gastos juntos al final del día, y confirmar categoría uno por uno le resultaría molesto e interrumpiría su flujo real de uso. | Se ajustó el criterio de aceptación de HU-02 para que la confirmación sea una **revisión en lote**: el usuario ve todos los gastos del día clasificados de una vez y corrige solo los que estén mal, en lugar de una pregunta por cada gasto. | **Valuable** — el diseño ahora coincide con el hábito real de uso (registrar al final del día) confirmado en `docs/ia/entrevista-real.md`, en vez de un supuesto no validado. |
 
 ---
 
