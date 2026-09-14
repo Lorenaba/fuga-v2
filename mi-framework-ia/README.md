@@ -98,24 +98,7 @@ FUGA-plus/
 │       └── prompts/                 # Biblioteca de prompts usados en el proyecto
 ├── mobile/                          # Código de la app (por crear)
 └── README.md
-```
 
-## Cómo levantar el proyecto
-
-> Sección a completar cuando arranque el desarrollo de la app.
-
-```bash
-git clone https://github.com/Lorenaba/FUGA-plus.git
-cd FUGA-plus/mobile
-
-# React Native
-npm install
-npx react-native run-android   # o run-ios
-
-# Flutter (si se elige esta opción en su lugar)
-flutter pub get
-flutter run
-```
 
 ## Equipo
 
