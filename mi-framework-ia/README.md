@@ -99,6 +99,7 @@ FUGA-plus/
 ├── mobile/                          # Código de la app (por crear)
 └── README.md
 
+```
 
 ## Equipo
 
